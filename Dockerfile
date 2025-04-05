@@ -11,7 +11,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Now source the environment variables to set the openai and runloop keys
-RUN source .env
+# Create entrypoint script
+RUN echo '#!/bin/bash\nsource .env\nexec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Default command for production
 CMD ["python", "src/main.py"]
