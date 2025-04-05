@@ -1,0 +1,21 @@
+services:
+  # Development service
+  dev:
+    build: .
+    volumes:
+      - .:/app
+      - python_cache:/root/.cache/pip
+    command: bash # Override the production CMD with bash
+    tty: true
+    stdin_open: true
+    network_mode: host # Use host network to speed up network calls and ops
+
+  # Production service (using the same image)
+  prod:
+    build: .
+    # Uses the default CMD from Dockerfile
+    # No volumes mounted - uses code baked into the image
+    network_mode: host
+
+volumes:
+  python_cache:
