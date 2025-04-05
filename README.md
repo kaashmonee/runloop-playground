@@ -2,6 +2,10 @@
 
 containerized runloop playground
 
+## setup
+
+i'm following the instructions in the docs here: <https://docs.runloop.ai/overview/quickstart>
+
 ## running
 
 1. populate env variables in examples.env
