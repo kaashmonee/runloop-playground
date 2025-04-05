@@ -12,6 +12,8 @@ COPY . .
 
 # Now source the environment variables to set the openai and runloop keys
 # Create entrypoint script
+# This script will source the .env file and then execute the command passed to the container
+# Sets all the environment secrets
 RUN echo '#!/bin/bash\nsource .env\nexec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
